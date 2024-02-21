@@ -40,6 +40,12 @@ wss.on('connection', function connection(ws, request) {
       ws.sendRemote(event, data);
     }
   });
+  ws.on('close', () => {
+    code2ws.delete(code);
+  });
+  ws._closeTimeout = setTimeout(() => {
+    ws.terminate();
+  }, 10 * 60 * 1000);
 });
 
 wss.on('listening', () => {
