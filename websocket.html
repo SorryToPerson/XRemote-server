@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Example</title>
+</head>
+<body>
+<script>
+    const socket = new WebSocket('ws://localhost:6666');
+
+    // 连接建立时触发
+    socket.addEventListener('open', (event) => {
+        console.log('WebSocket connection opened');
+
+        // 发送消息给服务器
+        socket.send('Hello, Server!');
+    });
+
+    // 收到消息时触发
+    socket.addEventListener('message', (event) => {
+        console.log(`Message from server: ${event.data}`);
+    });
+
+    // 连接关闭时触发
+    socket.addEventListener('close', (event) => {
+        console.log('WebSocket connection closed');
+    });
+</script>
+</body>
+</html>
